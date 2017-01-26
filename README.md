@@ -11,3 +11,7 @@ Possible long term goal - front end with GUI - I like the idea of GA data being 
 
 It would really be appreciated if you could share some of your SQL thingies for recreating some of the basic reports.
 
+P.S. You'll need Google's API Client for PHP - composer require google/apiclient:^2.0
+https://github.com/google/google-api-php-client
+
+
