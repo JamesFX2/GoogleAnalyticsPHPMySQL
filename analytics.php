@@ -7,13 +7,38 @@ $time = explode(' ', $time);
 $time = $time[1] + $time[0];
 $start = $time;
 
-$VIEW_ID = "XXX";
-// not your UA-ID, your view ID
-// you'll need to update this, your ignored custom dimensions, customise which your sessionID dimension is, which your timestamp is, 
-// which your client ID is too
-// oh and the database settings in /analytics/database.php
+$ACCOUNT_ID = "XXX";
+// not your UA - grab this from https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/accounts/list 
+// scroll down and hit the blue button - ctrl+f to find the account ID
 
-// Load the Google API PHP Client Library.
+$WEB_PROPERTY_ID = "UA-XXX";
+
+// Can get this by knowing it or... remember the account ID from above - 
+// https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/webproperties/list
+// hit that blue button
+
+$VIEW_ID = "XXX";
+
+// not your UA-ID, your view ID - as above 
+// https://developers.google.com/analytics/devguides/config/mgmt/v3/mgmtReference/management/profiles/list
+// enter the account id / web property ID and you should get this. 
+
+// P.s you'll need to update this, 
+// 1. your ignored custom dimensions (USER ID, Timestamp, Session ID, Client ID)
+
+$ignoreListDimensions => [1,2,3,4];
+
+// 2. customise which your sessionID dimension is (soz, this version, find and replace dimension2 
+// with whatever yours is)
+
+// 3. which your client ID is too - as above dimension1
+
+// 4. which your timestamp is -  find and replace dimension3
+
+// 5. Oh and the database settings in /analytics/database.php
+
+// 6. And the other instructions in the readme....
+
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/analytics/functions.php';
 require __DIR__ . '/analytics/database.php';
@@ -27,7 +52,7 @@ buildDb($schema);
 // populate meta tables for goals, custom dimensions, custom metrics
 
 $serviceAnalytics = serviceAnalytics();
-$dimensionsMetricsGoals = getDimensionsMetricsGoals($serviceAnalytics,array("ignoreListDimensions" => [1,2,3,4]));
+$dimensionsMetricsGoals = getDimensionsMetricsGoals($serviceAnalytics,array("ignoreListDimensions" => $ignoreListDimensions));
 
 
 // ACCOUNT
