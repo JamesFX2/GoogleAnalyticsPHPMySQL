@@ -9,6 +9,9 @@ $start = $time;
 
 $VIEW_ID = "XXX";
 // not your UA-ID, your view ID
+// you'll need to update this, your ignored custom dimensions, customise which your sessionID dimension is, which your timestamp is, 
+// which your client ID is too
+// oh and the database settings in /analytics/database.php
 
 // Load the Google API PHP Client Library.
 require __DIR__ . '/vendor/autoload.php';
